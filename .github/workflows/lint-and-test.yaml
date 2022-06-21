@@ -18,10 +18,12 @@ jobs:
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
     steps:
-    - uses: actions/checkout@master
-      with:
-        fetch-depth: 1
-        php-version: '8.0'
+    -   name: Checkout Repository
+        uses: actions/checkout@master
+    -   name: Setup Enviroment
+        uses: shivammathur/setup-php@v2
+        with:
+            php-version: '8.0'
 
     - run: composer update --no-scripts
     - run: cp .env.ci .env.testing
