@@ -22,7 +22,7 @@ jobs:
       with:
         fetch-depth: 1
 
-    - run: composer update --no-scripts
+    - run: composer update --ignore-platform-reqs
     - run: cp .env.ci .env.testing
     - run: |
         npm install
