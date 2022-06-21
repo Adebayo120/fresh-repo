@@ -23,7 +23,6 @@ jobs:
         fetch-depth: 1
 
     - run: composer update --no-scripts
-    - run: cp .env.ci .env.testing
     - run: |
         npm install
         npm run dev
