@@ -27,7 +27,5 @@ jobs:
         npm install
         npm run dev
 
-    - run: php artisan test
-
     - run: curl -OL https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar
     - run: php phpcs.phar
