@@ -21,8 +21,9 @@ jobs:
     - uses: actions/checkout@v1
       with:
         fetch-depth: 1
+        php-version: '8.0'
 
-    - run: composer update --ignore-platform-reqs
+    - run: composer update --no-scripts
     - run: cp .env.ci .env.testing
     - run: |
         npm install
