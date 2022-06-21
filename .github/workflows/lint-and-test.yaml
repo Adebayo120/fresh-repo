@@ -4,7 +4,7 @@ jobs:
   test-and-list:
     runs-on: ubuntu-latest
     container:
-      image: kirschbaumdevelopment/laravel-test-runner:7.4
+      image: kirschbaumdevelopment/laravel-test-runner:8.0
 
     services:
       postgres:
@@ -18,17 +18,17 @@ jobs:
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
     steps:
-    -   name: Checkout Repository
-        uses: actions/checkout@master
-    -   name: Setup Enviroment
-        uses: shivammathur/setup-php@v2
-        with:
-            php-version: '8.0'
+    - uses: actions/checkout@v1
+      with:
+        fetch-depth: 1
 
     - run: composer update --no-scripts
+    - run: cp .env.ci .env.testing
     - run: |
         npm install
         npm run dev
+
+    - run: php artisan test
 
     - run: curl -OL https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar
     - run: php phpcs.phar
